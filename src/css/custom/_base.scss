@@ -1,0 +1,23 @@
+@layer base {
+  h1 {
+    @apply text-5xl font-bold font-sans text-textcolor #{!important};
+  }
+  h2 {
+    @apply text-4xl font-bold font-sans text-textcolor #{!important};
+  }
+  h3 {
+    @apply text-3xl font-bold font-sans text-textcolor #{!important};
+  }
+  h4 {
+    @apply text-2xl font-bold font-sans text-textcolor #{!important};
+  }
+  h5 {
+    @apply text-xl font-bold font-sans text-textcolor #{!important};
+  }
+  p {
+    @apply text-base font-sans text-textcolor #{!important};
+  }
+  label {
+    @apply text-base font-sans text-textcolor #{!important};
+  }
+}

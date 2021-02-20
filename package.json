@@ -1,0 +1,60 @@
+{
+  "name": "simple-bengkel",
+  "version": "0.0.1",
+  "description": "Simple Bengkel using Quasar",
+  "productName": "Simple Bengkel Apps",
+  "author": "parys410 <parys410@gmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue ./",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "@vue/composition-api": "^1.0.0-beta.21",
+    "animate.css": "^4.1.1",
+    "core-js": "^3.6.5",
+    "idle-vue": "^2.0.5",
+    "ky": "^0.25.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.17",
+    "quasar": "^1.0.0",
+    "v-calendar": "^2.1.3",
+    "vuex": "^3.6.0"
+  },
+  "devDependencies": {
+    "@quasar/app": "^2.0.0",
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "autoprefixer": "^9.8.6",
+    "babel-eslint": "^10.0.1",
+    "devtron": "^1.4.0",
+    "electron": "^9.4.3",
+    "electron-debug": "^3.2.0",
+    "electron-devtools-installer": "^3.1.1",
+    "electron-packager": "^15.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-vue": "^6.1.2",
+    "postcss": "^7.0.35",
+    "stylelint": "^13.8.0",
+    "stylelint-config-standard": "^20.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
