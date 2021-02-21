@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 /* Import Controller */
 const usersController = require("./controller/users-controller");
+const configController = require("./controller/config-controller");
 
 try {
   mongoose.connect("mongodb://localhost:27017/simple-bengkel", {
@@ -20,6 +21,8 @@ db.once("open", function() {
 });
 
 ipcMain.on("create-user", usersController.createUser);
+ipcMain.handle("get-user", usersController.getUser);
+ipcMain.handle("get-config", configController.getConfig);
 
 try {
   if (
