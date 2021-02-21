@@ -19,6 +19,8 @@
               type="text"
               placeholder="Input username anda"
               v-model="userName"
+              :error="loginInfo.loginErrorState"
+              :error-message="loginInfo.loginMsg"
               required
               dense
             >
@@ -28,12 +30,19 @@
             <label>Password</label>
             <q-input
               outlined
-              type="password"
+              :type="isPwd ? 'password' : 'text'"
               placeholder="Input password anda"
               v-model="userPass"
               required
               dense
             >
+              <template v-slot:append>
+                <q-icon
+                  :name="isPwd ? 'visibility_off' : 'visibility'"
+                  class="cursor-pointer"
+                  @click="isPwd = !isPwd"
+                />
+              </template>
             </q-input>
           </div>
           <div class="mt-8">
@@ -56,15 +65,30 @@
 </template>
 <script>
 import { reactive, toRefs } from "@vue/composition-api";
+import api from "../api/http.api";
+
 export default {
   setup() {
     const state = reactive({
       userName: "",
-      userPass: ""
+      userPass: "",
+      isPwd: true,
+      loginInfo: {
+        loginErrorState: null,
+        loginMsg: ""
+      }
     });
 
-    const login = () => {
-      console.log("Login");
+    const login = async () => {
+      const data = await api.doFetch("get-user", {
+        userName: state.userName,
+        userPass: state.userPass
+      });
+
+      if (!data.success) {
+        state.loginInfo.loginErrorState = true;
+        state.loginInfo.loginMsg = "User tidak ditemukan";
+      }
     };
     return { ...toRefs(state), login };
   }

@@ -20,6 +20,7 @@ db.once("open", function() {
 });
 
 ipcMain.on("create-user", usersController.createUser);
+ipcMain.handle("get-user", usersController.getUser);
 
 try {
   if (
