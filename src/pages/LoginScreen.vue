@@ -7,7 +7,7 @@
       <div class="logo text-center">
         <h2 class="font-light text-xl">Selamat Datang</h2>
         <h1 class="text-3xl">
-          Bintang Putra Motor
+          {{ config.storeName }}
         </h1>
       </div>
       <div class="formLogin mt-11">
@@ -64,20 +64,34 @@
   </div>
 </template>
 <script>
-import { reactive, toRefs } from "@vue/composition-api";
+import { reactive, toRefs, watch } from "@vue/composition-api";
 import api from "../api/http.api";
 
 export default {
-  setup() {
+  setup(props, { root }) {
     const state = reactive({
       userName: "",
       userPass: "",
+      config: root.$store.getters.getConfig,
       isPwd: true,
       loginInfo: {
         loginErrorState: null,
         loginMsg: ""
       }
     });
+
+    watch(
+      () => state.userName,
+      newValue => {
+        state.loginInfo.loginErrorState = false;
+      }
+    );
+    watch(
+      () => state.userPass,
+      newValue => {
+        state.loginInfo.loginErrorState = false;
+      }
+    );
 
     const login = async () => {
       const data = await api.doFetch("get-user", {
@@ -88,6 +102,15 @@ export default {
       if (!data.success) {
         state.loginInfo.loginErrorState = true;
         state.loginInfo.loginMsg = "User tidak ditemukan";
+      } else {
+        const user = {
+          userName: data.userName,
+          userID: data.userID
+        };
+        root.$store.dispatch("setUserCredential", user);
+        root.$router.push({
+          path: "dashboard/home"
+        });
       }
     };
     return { ...toRefs(state), login };

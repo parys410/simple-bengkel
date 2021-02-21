@@ -29,13 +29,15 @@ const getUser = async (event, arg) => {
   if (!response || response.length <= 0) {
     return {
       success: false,
-      userID: null
+      userID: null,
+      userName: null
     };
   }
 
   return {
     success: true,
-    userID: response[0]._id.toString()
+    userID: response[0]._id.toString(),
+    userName: response[0].username
   };
 };
 

@@ -1,9 +1,10 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import { Cookies } from "quasar";
 
-import routes from './routes'
+import routes from "./routes";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 /*
  * If not building with SSR mode, you can
@@ -14,7 +15,7 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
+export default function({ store }) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
@@ -24,7 +25,33 @@ export default function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
-  })
+  });
 
-  return Router
+  Router.beforeEach((to, from, next) => {
+    store.commit("setLoading", true);
+    const credential = Cookies.get("userCredential");
+    store
+      .dispatch("setConfig")
+      .then(() => {
+        store.commit("setLoading", false);
+        if (to.name == "Login") {
+          if (!credential || credential == null) {
+            next();
+          } else {
+            store.dispatch("setUserCredential", Cookies.get("userCredential"));
+            next("/dashboard");
+          }
+        } else {
+          if (!credential || credential == null) {
+            next("/login");
+          } else {
+            store.dispatch("setUserCredential", Cookies.get("userCredential"));
+            next();
+          }
+        }
+      })
+      .catch(err => console.log(err));
+  });
+
+  return Router;
 }
