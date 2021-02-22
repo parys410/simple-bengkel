@@ -83,13 +83,13 @@ export default {
     watch(
       () => state.userName,
       newValue => {
-        state.loginInfo.loginErrorState = false;
+        state.loginInfo.loginErrorState = null;
       }
     );
     watch(
       () => state.userPass,
       newValue => {
-        state.loginInfo.loginErrorState = false;
+        state.loginInfo.loginErrorState = null;
       }
     );
 

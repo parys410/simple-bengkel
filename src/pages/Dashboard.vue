@@ -1,11 +1,13 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <DashboardHeader></DashboardHeader>
-    <DashboardDrawer></DashboardDrawer>
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+  <div style="background: #fbfcff;">
+    <q-layout view="hHh lpR fFf">
+      <DashboardHeader></DashboardHeader>
+      <DashboardDrawer></DashboardDrawer>
+      <q-page-container>
+        <router-view />
+      </q-page-container>
+    </q-layout>
+  </div>
 </template>
 <script>
 import DashboardHeader from "../component/dashboard/dashboard-header";

@@ -23,6 +23,13 @@ const credential = {
         sameSite: "Lax"
       });
       context.commit("setUserCredential", payload);
+    },
+    removeUserCredential() {
+      Cookies.remove("userCredential", {
+        expires: "1d",
+        path: "/",
+        sameSite: "Lax"
+      });
     }
   },
   getters: {

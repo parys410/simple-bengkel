@@ -1,6 +1,6 @@
 <template>
-  <div>
-    HOme
+  <div class="p-5">
+    Home
   </div>
 </template>
 <script></script>
