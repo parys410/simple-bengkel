@@ -23,6 +23,14 @@ const routes = [
         name: "Home",
         component: () =>
           import(/* webpackChunkName: "Home" */ "../pages/Dashboard/Home.vue")
+      },
+      {
+        path: "master-location",
+        name: "master-location",
+        component: () =>
+          import(
+            /* webpackChunkName: "MasterLocation" */ "../pages/Dashboard/MasterLocation.vue"
+          )
       }
     ]
   },

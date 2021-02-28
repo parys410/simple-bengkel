@@ -7,7 +7,13 @@
   >
     <div class="relative bg-white shadow-lg pt-5 pb-5 h-full">
       <q-list>
-        <q-item clickable v-ripple>
+        <q-item
+          clickable
+          v-ripple
+          to="/dashboard/home"
+          exact
+          exact-active-class="border-r-2 border-solid border-blue-300 bg-blue-100"
+        >
           <q-item-section avatar>
             <q-icon name="fas fa-tachometer-alt" class="text-gray-500" />
           </q-item-section>
@@ -34,7 +40,13 @@
           <q-item clickable v-ripple>
             <q-item-section class="text-gray-500">Data Barang</q-item-section>
           </q-item>
-          <q-item clickable v-ripple>
+          <q-item
+            clickable
+            v-ripple
+            to="/dashboard/master-location"
+            exact
+            exact-active-class="border-r-2 border-solid border-blue-300 bg-blue-100"
+          >
             <q-item-section class="text-gray-500">Data Lokasi</q-item-section>
           </q-item>
           <q-item clickable v-ripple>

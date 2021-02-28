@@ -15,7 +15,19 @@
       </q-toolbar-title>
 
       <div>
-        user
+        <q-btn-dropdown
+          flat
+          :label="credential.userName"
+          class="text-gray-800 uppercase"
+        >
+          <q-list>
+            <q-item clickable v-close-popup @click="handleLogout">
+              <q-item-section>
+                <q-item-label>Log Out</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </div>
     </q-toolbar>
   </q-header>
@@ -25,7 +37,8 @@ import { computed, reactive, toRefs } from "@vue/composition-api";
 export default {
   setup(props, { root }) {
     const state = reactive({
-      config: root.$store.getters.getConfig
+      config: root.$store.getters.getConfig,
+      credential: root.$store.getters.getUserCredential
     });
     const showDrawer = computed(() => root.$store.getters.getShowDrawer);
 
@@ -33,7 +46,14 @@ export default {
       root.$store.commit("setShowDrawer", !showDrawer.value);
     };
 
-    return { ...toRefs(state), setShowDrawer };
+    const handleLogout = () => {
+      root.$store.dispatch("removeUserCredential");
+      root.$router.replace({
+        name: "Login"
+      });
+    };
+
+    return { ...toRefs(state), setShowDrawer, handleLogout };
   }
 };
 </script>

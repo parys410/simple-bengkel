@@ -7,3 +7,9 @@
 @import "./quasar.variables.scss";
 @import "./custom/_pages";
 @import "./custom/_base";
+
+.ant-pagination-item-link {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
